@@ -1,5 +1,5 @@
 import React, { ReactNode, useReducer } from 'react';
-import { VocabularyItem } from './gameTypes';
+import { VocabularyItem, VocabularyParams } from './gameTypes';
 import { gameReducer, initialState } from './gameReducer';
 import GameContext from './GameContext';
 import { generateVocabulary } from '../../../services/aiService';
@@ -11,21 +11,21 @@ interface GameProviderProps {
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
-  // Function to load vocabulary based on current settings
-  const loadVocabulary = async () => {
-    // Add console logs to debug
-    console.log('loadVocabulary called with state:', {
-      topic: state.topic,
-      language: state.language,
-      wordCount: state.wordCount,
-      difficulty: state.difficulty
+  // Function to load vocabulary based on current settings with optional override
+  const loadVocabulary = async (overrideParams?: VocabularyParams) => {
+    // Get parameters either from override or from state
+    const topic = overrideParams?.topic || state.topic;
+    const language = overrideParams?.language || state.language;
+    const wordCount = overrideParams?.wordCount || state.wordCount;
+    const difficulty = overrideParams?.difficulty || state.difficulty;
+    
+    console.log('loadVocabulary called with params:', {
+      topic, language, wordCount, difficulty
     });
 
-    if (!state.topic || !state.language || !state.wordCount) {
+    if (!topic || !language || !wordCount) {
       console.error('Missing required game settings:', {
-        topic: state.topic,
-        language: state.language,
-        wordCount: state.wordCount
+        topic, language, wordCount
       });
       
       dispatch({ 
@@ -36,24 +36,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     }
 
     try {
-      // fallback topic
-      const topic = isValidTopic(state.topic) ? state.topic : 'school';
-      console.log('Using topic:', topic);
+      // Use a fallback topic if the input is gibberish
+      const validTopic = isValidTopic(topic) ? topic : 'school';
+      console.log('Using topic:', validTopic);
       
-      // use aiService to get vocab terms
+      // Generate vocabulary using OpenAI with appropriate difficulty
       const generatedItems = await generateVocabulary(
-        topic,
-        state.language,
-        state.wordCount,
-        state.difficulty
+        validTopic,
+        language,
+        wordCount,
+        difficulty || 'easy'
       );
-
-      // NOTE: previously I used to call the translate api to get the translated data, but it was easier with openAI
-      // I kept the api usage on the API Test page for now so you can see that it works.
 
       console.log('Generated vocabulary items:', generatedItems);
 
-      // add IDs to objects
+      // Transform the items to include IDs
       const vocabularyItems: VocabularyItem[] = generatedItems.map((item, index) => ({
         id: `item-${index}`,
         word: item.word,
@@ -70,46 +67,53 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     }
   };
 
-  // check for valid topic
+  // Simple check for valid topic
   const isValidTopic = (topic: string): boolean => {
     // Consider a topic valid if it contains at least 3 characters and is mostly letters
     return topic.length >= 3 && /^[A-Za-z\s]+$/.test(topic);
   };
 
+  // Function to start the countdown
   const startCountdown = () => {
     dispatch({ type: 'START_COUNTDOWN' });
   };
 
+  // Function to start the game
   const startGame = () => {
     dispatch({ type: 'START_GAME' });
   };
 
+  // Function to end the game
   const endGame = () => {
     dispatch({ type: 'END_GAME' });
   };
 
+  // Function to update the time remaining
   const updateTimeRemaining = (time: number) => {
     dispatch({ type: 'UPDATE_TIME_REMAINING', payload: time });
   };
 
+  // Function to increment matches count
   const incrementMatches = () => {
     dispatch({ type: 'INCREMENT_MATCHES' });
   };
 
+  // Function to increment misses count
   const incrementMisses = () => {
     dispatch({ type: 'INCREMENT_MISSES' });
   };
 
+  // Function to reset the game
   const resetGame = () => {
     dispatch({ type: 'RESET_GAME' });
   };
   
-  // needed this to clear game state between games
+  // Function to completely clear the game state
   const clearGameState = () => {
     dispatch({ type: 'CLEAR_GAME_STATE' });
   };
 
-  // contextinfo
+  // Combine all values and functions for the context
   const contextValue = {
     state,
     dispatch,

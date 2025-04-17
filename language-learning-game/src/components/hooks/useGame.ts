@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import GameContext from '../state/game/GameContext';
 import { GameState, GameAction } from '../state/game/gameTypes';
 
-// hook to access the full game context
+// Main hook for accessing the full game context
 export const useGame = () => {
   const context = useContext(GameContext);
   
@@ -13,43 +13,43 @@ export const useGame = () => {
   return context;
 };
 
-// accessing only the game state
+// Hook for accessing only the game state
 export const useGameState = (): GameState => {
   const { state } = useGame();
   return state;
 };
 
-// dispatching game actions
+// Hook for dispatching game actions
 export const useGameDispatch = (): React.Dispatch<GameAction> => {
   const { dispatch } = useGame();
   return dispatch;
 };
 
-// loading vocabulary
+// Hook for loading vocabulary
 export const useLoadVocabulary = () => {
   const { loadVocabulary } = useGame();
   return loadVocabulary;
 };
 
-// starting game countdown
+// Hook for starting game countdown
 export const useStartCountdown = () => {
   const { startCountdown } = useGame();
   return startCountdown;
 };
 
-// starting the game
+// Hook for starting the game
 export const useStartGame = () => {
   const { startGame } = useGame();
   return startGame;
 };
 
-// ending the game
+// Hook for ending the game
 export const useEndGame = () => {
   const { endGame } = useGame();
   return endGame;
 };
 
-// updating remaining time
+// Hook for updating remaining time
 export const useUpdateTimeRemaining = () => {
   const { updateTimeRemaining } = useGame();
   return updateTimeRemaining;
@@ -61,19 +61,19 @@ export const useIncrementMatches = () => {
   return incrementMatches;
 };
 
-// incrementing misses
+// Hook for incrementing misses
 export const useIncrementMisses = () => {
   const { incrementMisses } = useGame();
   return incrementMisses;
 };
 
-// resetting the game
+// Hook for resetting the game
 export const useResetGame = () => {
   const { resetGame } = useGame();
   return resetGame;
 };
 
-// clearing game state
+// Hook for clearing game state
 export const useClearGameState = () => {
   const { clearGameState } = useGame();
   return clearGameState;

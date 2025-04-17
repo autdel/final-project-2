@@ -33,7 +33,8 @@ export const initialState: GameState = {
 // The reducer function
 export function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
-    case 'INITIALIZE_GAME': { 
+    case 'INITIALIZE_GAME':
+      // Complete reset of the state when initializing a new game
       const wordCount = action.payload.wordCount || 5;
       const timeLimit = calculateTimeLimit(wordCount);
       
@@ -44,7 +45,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         timeLimit,
         timeRemaining: timeLimit,
       };
-    }
     
     case 'SET_VOCABULARY':
       return {

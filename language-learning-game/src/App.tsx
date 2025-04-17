@@ -6,7 +6,7 @@ import ErrorPage from './components/errors/ErrorPage';
 import ApiTest from './components/ApiTest';
 import HomePage from './HomePage';
 import GamesPage from './GamesPage';
-import MatchingGamePage from './MatchingGamePage';
+import MatchingGameWrapper from './components/state/game/MatchingGameWrapper';
 import { GameProvider } from './components/state/game';
 
 const FlashcardGamePage = () => <div><h1>Welcome to the Flashcard Page!!</h1></div>;
@@ -25,7 +25,7 @@ function App() {
                   <Route path="/" element={<HomePage />} />
                   <Route path="/test" element={<ApiTest/>} />
                   <Route path="/games" element={<GamesPage />} />
-                  <Route path="/games/matching" element={<MatchingGamePage />} />
+                  <Route path="/games/matching" element={<MatchingGameWrapper />} />
                   <Route path="/games/flashcard" element={<FlashcardGamePage />} />
                   <Route path="/games/sentence" element={<SentenceGamePage />} />
                   <Route path="/*" element={<NotFoundPage />} />

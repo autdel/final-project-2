@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { 
   useGameState, 
@@ -9,7 +9,8 @@ import {
   useUpdateTimeRemaining,
   useIncrementMatches,
   useIncrementMisses,
-  useResetGame
+  useResetGame,
+  useClearGameState
 } from './components/state/game';
 import LoadingSpinner from './components/Loading';
 import GameTimer from './components/games/GameTimer';
@@ -51,7 +52,6 @@ Card.displayName = 'Card';
 const MatchingGamePage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const initRef = useRef(false);
   
   // Use the game hooks
   const state = useGameState();
@@ -63,6 +63,7 @@ const MatchingGamePage: React.FC = () => {
   const incrementMatches = useIncrementMatches();
   const incrementMisses = useIncrementMisses();
   const resetGame = useResetGame();
+  const clearGameState = useClearGameState();
   
   // Local state for the game
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
@@ -72,88 +73,47 @@ const MatchingGamePage: React.FC = () => {
   const [showResults, setShowResults] = useState(false);
   const [shuffledWords, setShuffledWords] = useState<string[]>([]);
   const [shuffledTranslations, setShuffledTranslations] = useState<string[]>([]);
+  const [initialized, setInitialized] = useState(false);
   
-
-  // clear previous state / initialize game from URL params - using useRef to ensure it only runs once
-useEffect(() => {
-  if (initRef.current) return;
-  initRef.current = true;
-  
+  // Parse URL parameters
   const params = new URLSearchParams(location.search);
   const language = params.get('language');
   const difficulty = params.get('difficulty');
   const wordCount = parseInt(params.get('wordCount') || '5', 10);
   const topic = params.get('topic');
   
-  if (!language || !difficulty || !topic) {
-    navigate('/games');
-    return;
-  }
-  
-  dispatch({ type: 'CLEAR_GAME_STATE' });
-  
-  // add a small delay to ensure state is cleared
-  setTimeout(() => {
-    dispatch({
-      type: 'INITIALIZE_GAME',
-      payload: {
-        gameType: 'matching',
-        language,
-        difficulty,
-        wordCount,
-        topic
-      }
-    });
-    
-    // another delay
-    setTimeout(() => {
-      loadVocabulary();
-    }, 100);
-  }, 50);
-  
-}, [dispatch, loadVocabulary, navigate, location.search]);
-  
-  // Initialize game from URL params - using useRef to ensure it only runs once
+  // Initialize game once on mount
   useEffect(() => {
-    if (initRef.current) return;
+    // Skip if already initialized
+    if (initialized) return;
     
-    console.log('Initializing game with params:', location.search);
+    // Clear any previous state
+    clearGameState();
     
-    const params = new URLSearchParams(location.search);
-    const language = params.get('language');
-    const difficulty = params.get('difficulty');
-    const wordCount = parseInt(params.get('wordCount') || '5', 10);
-    const topic = params.get('topic');
+    console.log('Initializing game with params:', { language, difficulty, wordCount, topic });
     
-    console.log('Parsed parameters:', { language, difficulty, wordCount, topic });
-    
-    if (!language || !difficulty || !topic) {
-      console.error('Missing URL parameters, navigating back to games page');
-      navigate('/games');
-      return;
-    }
-    
-    // Initialize game with URL parameters
+    // Initialize the game state
     dispatch({
       type: 'INITIALIZE_GAME',
       payload: {
         gameType: 'matching',
-        language,
-        difficulty,
+        language: language || '',
+        difficulty: difficulty || '',
         wordCount,
-        topic
+        topic: topic || ''
       }
     });
     
-    initRef.current = true;
+    // Load vocabulary with direct parameters to avoid state timing issues
+    loadVocabulary({
+      topic: topic || undefined,
+      language: language || undefined,
+      wordCount,
+      difficulty: difficulty || undefined
+    });
     
-    // testing with a delay has helped with loading
-    setTimeout(() => {
-      console.log('Loading vocabulary after initialization');
-      loadVocabulary();
-    }, 100);
-    
-  }, [dispatch, loadVocabulary, navigate, location.search]);
+    setInitialized(true);
+  }, [language, difficulty, wordCount, topic, dispatch, loadVocabulary, clearGameState, initialized]);
   
   // Shuffle words and translations when vocabulary is loaded
   useEffect(() => {
@@ -298,11 +258,6 @@ useEffect(() => {
     navigate('/games');
   }, [navigate]);
   
-  // Debug log for state
-  useEffect(() => {
-    console.log('Current game state:', state);
-  }, [state]);
-  
   // Render loading state
   if (state.status === 'loading') {
     return (
@@ -373,12 +328,6 @@ useEffect(() => {
             ))}
           </div>
         </div>
-      </div>
-
-      <div className='flex justify-center'>
-        <button className='btn-primary p-2'  onClick={() => window.location.href = './'}>
-          Exit the Game
-        </button>
       </div>
       
       {showResults && (
