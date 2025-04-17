@@ -1,6 +1,6 @@
 # final-project-2
 # PolyLingo - Details
-Here are some of the key details for my app.
+Here are some of the key details for my app. Use 'npm run dev' in the language-learning-game directory to run.
 
 ## App Architecture
 
