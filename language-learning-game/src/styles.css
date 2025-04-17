@@ -23,6 +23,8 @@
   --color-neutral-900: #171717;
   
   --color-white: #ffffff;
+  --color-red: #d42e2e;
+  --color-darkred: #a82020;
   --color-black: #000000;
   
   /* Spacing */
@@ -242,6 +244,31 @@ nav a:hover {
 
 .action-btn:hover {
   background-color: var(--color-secondary-700);
+}
+
+.smaller-btn {
+  color: var(--color-white);
+  font-size: var(--text-md);
+  background-color: var(--color-secondary-600);
+  padding: var(--spacing-2);
+  border: none;
+  border-radius: var(--rounded-md);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100px;
+}
+
+.smaller-btn:hover {
+  background-color: var(--color-secondary-700);
+}
+
+.bg-red {
+  background-color: var(--color-red);
+}
+
+.bg-red:hover {
+  background-color: var(--color-darkred);
 }
 
 .box {

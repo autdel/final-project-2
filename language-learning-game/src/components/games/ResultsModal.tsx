@@ -78,10 +78,10 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
         </div>
         
         <div className="modal-footer">
-          <button className="btn-primary" onClick={onExit}>
-            Back to Games
+          <button className="smaller-btn bg-red" onClick={onExit}>
+            Exit Game
           </button>
-          <button className="btn-secondary" onClick={onRestart}>
+          <button className="smaller-btn" onClick={onRestart}>
             Play Again
           </button>
         </div>
