@@ -6,6 +6,7 @@ import ErrorPage from './components/errors/ErrorPage';
 import ApiTest from './components/ApiTest';
 import HomePage from './HomePage';
 import GamesPage from './GamesPage';
+import AboutPage from './AboutPage';
 import MatchingGameWrapper from './components/state/game/MatchingGameWrapper';
 import { GameProvider } from './components/state/game';
 
@@ -30,6 +31,7 @@ function App() {
                   <Route path="/games/matching" element={<MatchingGameWrapper />} />
                   <Route path="/games/flashcard" element={<FlashcardGamePage />} />
                   <Route path="/games/sentence" element={<SentenceGamePage />} />
+                  <Route path="/about" element={<AboutPage />} />
                   <Route path="/*" element={<NotFoundPage />} />
                 </Routes>
               </ErrorBoundary>
