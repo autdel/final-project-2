@@ -335,7 +335,6 @@ const MatchingGamePage: React.FC = () => {
           isOpen={showResults}
           onRestart={handleRestart}
           onExit={handleExit}
-          score={state.score}
           matches={state.matches}
           misses={state.misses}
           timeRemaining={state.timeRemaining}

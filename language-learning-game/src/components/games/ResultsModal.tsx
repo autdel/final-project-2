@@ -6,7 +6,6 @@ interface ResultsModalProps {
   isOpen: boolean;
   onRestart: () => void;
   onExit: () => void;
-  score: number;
   matches: number;
   misses: number;
   timeRemaining: number;
@@ -18,7 +17,6 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
   isOpen,
   onRestart,
   onExit,
-  score,
   matches,
   misses,
   timeRemaining,
@@ -76,11 +74,6 @@ const ResultsModal: React.FC<ResultsModalProps> = ({
             <span className="result-value">
               {timeRemaining > 0 ? `${timeRemaining} seconds` : 'None'}
             </span>
-          </div>
-          
-          <div className="result-item">
-            <span className="result-label">Score:</span>
-            <span className="result-value score">{score}</span>
           </div>
         </div>
         

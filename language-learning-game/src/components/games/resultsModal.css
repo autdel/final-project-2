@@ -98,15 +98,6 @@
     color: #f56565;
   }
   
-  .result-value.score {
-    font-size: var(--text-xl);
-    color: var(--color-primary-600);
-  }
-  
-  .dark .result-value.score {
-    color: var(--color-primary-500);
-  }
-  
   .modal-footer {
     padding: var(--spacing-4) var(--spacing-6);
     background-color: var(--color-neutral-100);

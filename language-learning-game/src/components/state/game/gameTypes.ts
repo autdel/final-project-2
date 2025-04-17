@@ -25,7 +25,6 @@ export interface GameState {
   topic: string;
   vocabularyItems: VocabularyItem[];
   status: GameStatus;
-  score: number;
   timeLimit: number;
   timeRemaining: number;
   matches: number;
@@ -42,7 +41,6 @@ export type GameAction =
   | { type: 'START_COUNTDOWN' }
   | { type: 'START_GAME' }
   | { type: 'END_GAME' }
-  | { type: 'UPDATE_SCORE'; payload: number }
   | { type: 'UPDATE_TIME_REMAINING'; payload: number }
   | { type: 'INCREMENT_MATCHES' }
   | { type: 'INCREMENT_MISSES' }

@@ -20,7 +20,6 @@ export const initialState: GameState = {
   topic: '',
   vocabularyItems: [],
   status: 'loading',
-  score: 0,
   timeLimit: 0,
   timeRemaining: 0,
   matches: 0,
@@ -71,12 +70,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         ...state,
         status: 'completed',
         endTime: Date.now(),
-      };
-    
-    case 'UPDATE_SCORE':
-      return {
-        ...state,
-        score: action.payload,
       };
     
     case 'UPDATE_TIME_REMAINING':
