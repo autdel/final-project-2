@@ -74,7 +74,7 @@ export const generateVocabulary = async (
     difficulty: string,
 ): Promise<Array<{ word: string, translation: string }>> => {
     console.log(`Data: \n Topic: ${topic} \n Target Language: ${targetLanguage} \n Count: ${count}`);
-    
+
     const prompt = `Generate ${count} vocabulary words or phrases related to "${topic}" in English with their translations 
       in ${targetLanguage}. On a scale from easy to expert, these words or phrases should be "${difficulty}" for a language learner. 
       If the provided topic cannot be understood, use the topic 'school'. Format the response as a JSON array with objects containing 
@@ -88,8 +88,8 @@ export const generateVocabulary = async (
       });
       
       // Parse the JSON response
-      console.log('Response: ', result.text);
-      setTimeout(() => {}, 10000);
+      // console.log('Response: ', result.text);
+      // setTimeout(() => {}, 10000);
       return JSON.parse(result.text);
     } catch (error) {
       console.error('Failed to generate vocabulary:', error);

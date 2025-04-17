@@ -1,4 +1,4 @@
-// src/components/ApiTest.tsx
+// I needed this page to test if my api works due to openAI problems. This let's me see that both return a response
 import { useState } from 'react';
 import { translateText } from '../services/translationService';
 import { generateVocabulary } from '../services/aiService';
@@ -32,7 +32,7 @@ const ApiTest = () => {
     setError(prev => ({ ...prev, openai: '' }));
     
     try {
-      const result = await generateVocabulary('food', 'es', 5);
+      const result = await generateVocabulary('food', 'es', 5, 'easy');
       setOpenaiResult(result);
     } catch (err) {
       setError(prev => ({ ...prev, openai: (err as Error).message }));

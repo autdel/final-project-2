@@ -95,6 +95,7 @@ h6 { font-size: var(--text-base); }
 .container {
   width: 100%;
   margin: var(--spacing-4) 0px;
+  overflow-x: hidden;
 }
 
 .flex {

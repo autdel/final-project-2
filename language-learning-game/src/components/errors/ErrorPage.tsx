@@ -11,7 +11,7 @@ interface ErrorPageProps {
 const ErrorPage: React.FC<ErrorPageProps> = ({
   title = 'Something went wrong',
   message = 'We apologize for the inconvenience. Please try again later.',
-  showHomeButton = true,
+  showHomeButton = false,
   showBackButton = true,
 }) => {
   const navigate = useNavigate();

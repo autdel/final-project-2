@@ -1,0 +1,298 @@
+/* src/pages/games.css */
+
+/* Container for the entire page */
+.games-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-6);
+  }
+  
+  /* Main page title */
+  .games-title {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--color-primary-600);
+    text-align: center;
+    margin-bottom: var(--spacing-8);
+    margin-top: 0px;
+  }
+  
+  .dark .games-title {
+    color: var(--color-primary-500);
+  }
+  
+  /* Game setup card */
+  .game-setup-card {
+    background-color: var(--color-white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+    margin-top: 0px;
+    border: 1px solid var(--color-neutral-200);
+  }
+  
+  .dark .game-setup-card {
+    background-color: var(--color-neutral-800);
+    border-color: var(--color-neutral-700);
+  }
+  
+  /* Setup heading */
+  .setup-heading {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--color-neutral-900);
+    margin-bottom: var(--spacing-4);
+    margin-top: 0px;
+  }
+  
+  .dark .setup-heading {
+    color: var(--color-white);
+  }
+  
+  /* Setup instructions */
+  .setup-instructions {
+    color: var(--color-neutral-700);
+    margin-bottom: var(--spacing-6);
+    line-height: 1.6;
+  }
+  
+  .dark .setup-instructions {
+    color: var(--color-neutral-200);
+  }
+  
+  /* Form styling */
+  .game-form {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+  }
+  
+  @media (min-width: 768px) {
+    .game-form {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Form group */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form labels */
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: var(--spacing-2);
+    color: var(--color-neutral-800);
+  }
+  
+  .dark .form-group label {
+    color: var(--color-neutral-100);
+  }
+  
+  /* Select inputs */
+  .form-group select {
+    padding: var(--spacing-3);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--rounded-md);
+    background-color: var(--color-white);
+    font-size: var(--text-base);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23404040'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-3) center;
+    background-size: 1em;
+  }
+  
+  .dark .form-group select {
+    background-color: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+    color: var(--color-white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23f5f5f5'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  }
+  
+  .form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(8, 156, 197, 0.2);
+  }
+  
+  /* Text input styling */
+  .form-input {
+    padding: var(--spacing-3);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: var(--rounded-md);
+    background-color: var(--color-white);
+    font-size: var(--text-base);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .dark .form-input {
+    background-color: var(--color-neutral-700);
+    border-color: var(--color-neutral-600);
+    color: var(--color-white);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 3px rgba(8, 156, 197, 0.2);
+  }
+  
+  .form-input::placeholder {
+    color: var(--color-neutral-400);
+  }
+  
+  .dark .form-input::placeholder {
+    color: var(--color-neutral-500);
+  }
+  
+  /* Form hint text */
+  .form-hint {
+    margin-top: var(--spacing-1);
+    font-size: 0.875rem;
+    color: var(--color-neutral-600);
+  }
+  
+  .dark .form-hint {
+    color: var(--color-neutral-400);
+  }
+  
+  /* Start button */
+  .start-button {
+    grid-column: 1 / -1;
+    margin-top: var(--spacing-4);
+    background-color: var(--color-primary-600);
+    color: var(--color-white);
+    padding: var(--spacing-3) var(--spacing-6);
+    border-radius: var(--rounded-md);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 300px;
+    text-align: center;
+  }
+  
+  .start-button:hover:not(.disabled) {
+    background-color: var(--color-primary-700);
+    transform: translateY(-1px);
+  }
+  
+  .start-button:active:not(.disabled) {
+    transform: translateY(1px);
+  }
+  
+  .start-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .dark .start-button {
+    background-color: var(--color-primary-500);
+  }
+  
+  .dark .start-button:hover:not(.disabled) {
+    background-color: var(--color-primary-600);
+  }
+  
+  /* Game descriptions section */
+  .game-descriptions {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  @media (min-width: 768px) {
+    .game-descriptions {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Individual game description cards */
+  .game-description-card {
+    background-color: var(--color-white);
+    border-radius: var(--rounded-lg);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-6);
+    border: 1px solid var(--color-neutral-200);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .game-description-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .dark .game-description-card {
+    background-color: var(--color-neutral-800);
+    border-color: var(--color-neutral-700);
+  }
+  
+  /* Game card headings */
+  .game-description-card h3 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--color-primary-600);
+    margin-bottom: var(--spacing-3);
+    margin-top: 0px;
+    position: relative;
+  }
+  
+  .game-description-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--color-primary-500);
+    border-radius: var(--rounded-full);
+  }
+  
+  .dark .game-description-card h3 {
+    color: var(--color-primary-500);
+  }
+  
+  /* Game description text */
+  .game-description-card p {
+    color: var(--color-neutral-700);
+    line-height: 1.6;
+  }
+  
+  .dark .game-description-card p {
+    color: var(--color-neutral-300);
+  }
+  
+  /* Margin bottom utility */
+  .mb-4 {
+    margin-bottom: var(--spacing-4);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .games-container {
+      padding: var(--spacing-4);
+    }
+    
+    .games-title {
+      font-size: var(--text-2xl);
+      margin-bottom: var(--spacing-6);
+    }
+    
+    .setup-heading {
+      font-size: var(--text-xl);
+    }
+    
+    .game-setup-card,
+    .game-description-card {
+      padding: var(--spacing-4);
+    }
+  }
