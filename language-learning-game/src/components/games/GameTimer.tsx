@@ -1,6 +1,5 @@
-// src/components/games/GameTimer.tsx
 import React from 'react';
-import './GameTimer.css';
+import '../styles/gameTimer.css';
 
 interface GameTimerProps {
   time: number;

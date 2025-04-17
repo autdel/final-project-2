@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGameState } from '../state/game';
-import './ResultsModal.css';
+import '../styles/resultsModal.css';
 
 interface ResultsModalProps {
   isOpen: boolean;

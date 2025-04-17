@@ -9,6 +9,8 @@ import GamesPage from './GamesPage';
 import MatchingGameWrapper from './components/state/game/MatchingGameWrapper';
 import { GameProvider } from './components/state/game';
 
+// I ran out of time to implement these other pages. These will get converted once they are done.
+
 const FlashcardGamePage = () => <div><h1>Welcome to the Flashcard Page!!</h1></div>;
 const SentenceGamePage = () => <div><h1>This will be the Sentence Page!!</h1></div>;
 const NotFoundPage = () => <ErrorPage title="Page Not Found!" message="Check to make sure your url is correct." />;

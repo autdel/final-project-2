@@ -1,22 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { 
-  useGameState, 
-  useGameDispatch,
-  useLoadVocabulary,
-  useStartGame,
-  useEndGame,
-  useUpdateTimeRemaining,
-  useIncrementMatches,
-  useIncrementMisses,
-  useResetGame,
-  useClearGameState
-} from './components/state/game';
+import { useGameState, useGameDispatch, useLoadVocabulary, useStartGame, useEndGame, useUpdateTimeRemaining, useIncrementMatches, useIncrementMisses, useResetGame, useClearGameState } from './components/state/game';
 import LoadingSpinner from './components/Loading';
 import GameTimer from './components/games/GameTimer';
 import CountdownScreen from './components/games/CountdownScreen';
 import ResultsModal from './components/games/ResultsModal';
-import './components/games/matchingGame.css';
+import './components/styles/matchingGame.css';
 
 interface CardProps {
   text: string;

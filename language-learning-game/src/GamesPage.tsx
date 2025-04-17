@@ -1,7 +1,7 @@
 // src/pages/GamesPage.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './components/games/gamesPage.css';
+import './components/styles/gamesPage.css';
 
 // Define types for form data
 interface GameFormData {
@@ -24,10 +24,8 @@ const GamesPage: React.FC = () => {
     topic: ''
   });
 
-  // Track validation state
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     
@@ -36,7 +34,6 @@ const GamesPage: React.FC = () => {
       return;
     }
     
-    // Update form data
     const updatedFormData = {
       ...formData,
       [name]: name === 'wordCount' ? parseInt(value, 10) : value
@@ -44,12 +41,11 @@ const GamesPage: React.FC = () => {
     
     setFormData(updatedFormData);
     
-    // Check if all required fields have values
     const { gameType, language, difficulty, topic } = updatedFormData;
     setIsFormValid(!!gameType && !!language && !!difficulty && !!topic);
   };
 
-  // Handle form submission
+  // submit the valid form
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -130,8 +126,8 @@ const GamesPage: React.FC = () => {
             >
               <option value="" disabled>Select a game</option>
               <option value="matching">Vocabulary Matching</option>
-              <option value="flashcard">Rapid Flashcards</option>
-              <option value="sentence">Sentence Builder</option>
+              <option value="flashcard" disabled>Rapid Flashcards</option>
+              <option value="sentence" disabled>Sentence Builder</option>
             </select>
           </div>
           

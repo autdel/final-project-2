@@ -1,6 +1,5 @@
-// src/components/games/CountdownScreen.tsx
 import React, { useEffect, useState } from 'react';
-import './CountdownScreen.css';
+import '../styles/CountdownScreen.css';
 
 interface CountdownScreenProps {
   onComplete: () => void;

@@ -66,14 +66,15 @@ export const generateText = async ({
       throw error;
     }
 };
-  
+
+// This creates the prompt based on input values that gets used in the actual api call above
 export const generateVocabulary = async (
     topic: string,
     targetLanguage: string,
     count: number = 10,
     difficulty: string,
 ): Promise<Array<{ word: string, translation: string }>> => {
-    console.log(`Data: \n Topic: ${topic} \n Target Language: ${targetLanguage} \n Count: ${count}`);
+    // console.log(`Data: \n Topic: ${topic} \n Target Language: ${targetLanguage} \n Count: ${count}`);
 
     const prompt = `Generate ${count} vocabulary words or phrases related to "${topic}" in English with their translations 
       in ${targetLanguage}. On a scale from easy to expert, these words or phrases should be "${difficulty}" for a language learner. 

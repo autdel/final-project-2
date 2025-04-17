@@ -111,7 +111,6 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return {
         ...state,
         status: 'countdown',
-        score: 0,
         timeRemaining: state.timeLimit,
         matches: 0,
         misses: 0,
