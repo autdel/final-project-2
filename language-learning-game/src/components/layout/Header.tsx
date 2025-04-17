@@ -45,7 +45,7 @@ const Header = () => {
             <nav className="hidden-mobile">
               <ul className="flex">
                 <li><Link to="/" className="link-text px-3 py-2">Home</Link></li>
-                <li><Link to="/games" className="link-text px-3 py-2">Games</Link></li>
+                <li><Link to="./games" className="link-text px-3 py-2">Games</Link></li>
                 <li><Link to="/about" className="link-text px-3 py-2">About</Link></li>
               </ul>
             </nav>

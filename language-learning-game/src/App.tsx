@@ -21,7 +21,7 @@ function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <GameProvider>
-          <Router>
+          <Router basename="/polylingo">
             <Layout>
               <ErrorBoundary>
                 <Routes>
